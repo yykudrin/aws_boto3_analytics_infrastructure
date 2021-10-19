@@ -37,7 +37,7 @@ def create_rds(SG, inst_class='db.t3.micro', engine='postgres'):
 def create_db_subnet_group(subnet_id_1, subnet_id_2):
     tags = give_tags('Analytics_DB_subnet_group')
 
-    response = client.create_db_subnet_group(
+    response = rds.create_db_subnet_group(
         DBSubnetGroupName='Analytics_DB_subnet_group_explisit',
         DBSubnetGroupDescription='db_subnet_group',
         SubnetIds=[

@@ -53,3 +53,6 @@ create_db_subnet_group(subnet_id_private_1, subnet_id_private_2)
 create_rds(sg_private)
 
 
+
+print('subnet_id=', subnet_id_public)
+print('sg_id=', sg_public)

@@ -1,6 +1,6 @@
 ami = 'ami-01a8af41852c2b48c'
 ec2_instance_size = 't2.micro'
-subnet_id = 'subnet-063a3ff4a2a6e57cc'
-sg_id = 'sg-0cb249af3486459e0'
+subnet_id = 'subnet-021ce5eea37c5780e'
+sg_id = 'sg-02e9e725c3fcd0986'
 AZ = 'us-west-1a'
 instance_id = ''

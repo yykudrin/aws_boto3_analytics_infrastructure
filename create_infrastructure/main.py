@@ -18,9 +18,9 @@ from network import create_route
 
 # Create Network
 vpc = create_vpc()
-subnet_id_public = create_subnet(vpc, '192.168.1.0/25', 'us-west-1a')
-subnet_id_private_1 = create_subnet(vpc, '192.168.1.128/26', 'us-west-1a')
-subnet_id_private_2 = create_subnet(vpc, '192.168.1.192/26', 'us-west-1b')
+subnet_id_public = create_subnet(vpc, '192.168.1.0/25', 'us-west-1b')
+subnet_id_private_1 = create_subnet(vpc, '192.168.1.128/26', 'us-west-1b')
+subnet_id_private_2 = create_subnet(vpc, '192.168.1.192/26', 'us-west-1c')
 gateway_id = create_internetgateway(vpc)
 
 # Create Security Groups

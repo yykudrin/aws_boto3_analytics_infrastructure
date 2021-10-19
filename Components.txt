@@ -1,0 +1,89 @@
+TAGS:
+    name: Analytics_<service>_<owner>
+    owner: Iaroslav_Kudrin
+    project: Analytics
+
+
+Security Groups:
+
+    name: Analitics_RDS_SG_Iaroslav_Kudrin
+    description: sg for access to ms sql server from ec2 instances
+    explanation: разрешаем входящий трафик по 1433 порту входящий трафик TCP из 192.168.1.128/25
+
+    name: Analitics_EC2_SG_Iaroslav_Kudrin
+    description: sg for access to ec2 from sql instances and from rdp
+    explanation: разрешаем входящий трафик по 3389 порту TCP c 0.0.0.0
+                 разрешаем исходящий  HTTP HTTPS на 0.0.0.0
+                 разрешаем иcходящий трафик 1433 порт TCP  в 192.168.1.0/25
+
+
+VPC:
+    name: Analitics_VPC_Iaroslav_Kudrin
+    CIDR: 192.168.1.0/24
+    description: VPC for EC2 and RDS servers
+    explanation: создаем VPC c доступом в интернет(если не нужен будет, то уберем)
+
+
+Region:
+    us-west-1
+
+
+Internet GateWay:
+    name: Analytics_IGW_Iaroslav_Kudrin
+
+
+Subnets:
+    1) name: Analitics_EC2_Subnet_Iaroslav_Kudrin 
+       CIDR: 192.168.1.0/25
+       description: для EC2 доступ в интернет
+    2) name: Analitics_RDS_Subnet_Iaroslav_Kudrin_01
+       CIDR: 192.168.1.128/26
+       description: для RDS доступ в инет не нужен
+    3) name: Analitics_RDS_Subnet_Iaroslav_Kudrin_02
+       CIDR: 192.168.1.192/26
+       description: для RDS доступ в инет не нужен
+
+NACL:
+
+    1) name: Analitics_RDS_NACL_Iaroslav_Kudrin
+       исходящий трафик из RDS сети в EC2
+       входящий трафик в RDS из EC2
+       inbound: 100 custom TCP на 1433 порт из 192.168.1.0/25 сеть
+       outbound: 100 custom TCP на 1-65535 порт в 192.168.1.0/25 сеть
+
+    2) name: Analitics_EC2_NACL_Iaroslav_Kudrin
+       исходящий трафик из EC2 сети в интернет и в RDS сеть
+       входящий трафик в EC2  ото всюду
+       inbound: 100 all trafic из 0.0.0.0/25
+       outbound: 100 all trafic из 0.0.0.0/25
+
+
+Route Tables:
+    name: Analitics_Private_RouteTable_Iaroslav_Kudrin
+    description:  route to 192.168.1.128/25(Analitics_RDS_Subnet_Iaroslav_Kudrin )
+    explanation: маршрут из подсети базы данных в подсеть c EC2
+
+    name: Analitics_Public_RouteTable_Iaroslav_Kudrin
+    description:  route to 192.168.1.0/25(Analitics_EC2_Subnet_Iaroslav_Kudrin )
+    explanation: маршрут из подсети EC2 в интернет и в подсеть с базой данных
+
+Key Pair:
+    name: Analytics_KeyPair_Iaroslav_Kudrin
+
+
+EC2:
+    AMI: ami-0c3d750659d8d3769
+    Type: t2.medium
+    number of instance: 1
+    Network: vpc-0d6417d828c8bd34a
+    Subnet: Analitics_EC2_Subnet_Iaroslav_Kudrin 
+    AutoAssignPublicIP: Enable
+    name: Analitics_EC2_Iaroslav_Kudrin_01
+
+RDS:
+    Engine Type: MS SQL
+    Edition: Express
+    DB instance identifier: database-1
+    masterusername: admin
+    masterpassword: User1234
+    DB instance class: db.t3.small

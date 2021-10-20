@@ -1,4 +1,4 @@
-ami = 'ami-02c4f00eb76d8bee2'
+ami = 'ami-0fa98aa014035ccf2'
 ec2_instance_size = 't2.medium'
 subnet_id = 'subnet-01207113e69188cf9'
 sg_id = 'sg-032c013d9eae1b67c'

@@ -2,7 +2,7 @@ ingress_permissions_private = [
             {'IpProtocol': 'tcp',
             'FromPort': 5432,
             'ToPort': 5432,
-            'IpRanges': [{'CidrIp': '192.168.1.128/25'}]},
+            'IpRanges': [{'CidrIp': '192.168.1.0/25'}]},
         ]
 egress_permissions_private = []
 ingress_permissions_public = [
@@ -23,5 +23,5 @@ egress_permissions_public = [
             {'IpProtocol': 'tcp',
             'FromPort': 5432,
             'ToPort': 5432,
-            'IpRanges': [{'CidrIp': '192.168.1.0/25'}]},
+            'IpRanges': [{'CidrIp': '192.168.1.128/25'}]},
         ]

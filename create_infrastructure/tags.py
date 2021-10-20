@@ -6,11 +6,11 @@ def give_tags(entity_name):
                     },
                     {
                     'Key': 'Owner',
-                    'Value': 'Iaroslav_Kudrin'
+                    'Value': 'Giorgiy_Kiladze'
                     },
                     {
                     'Key': 'Project',
-                    'Value': 'Analytics'
+                    'Value': 'em_analytics'
                     },
         ]
     return tags

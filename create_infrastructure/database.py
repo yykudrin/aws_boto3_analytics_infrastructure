@@ -1,11 +1,14 @@
 import boto3
 from tags import give_tags
+from settings import login
+from settings import passw
+
 
 rds = boto3.client('rds')
 
 
 def create_rds(SG, inst_class='db.t3.micro', engine='postgres'):
-    tags = give_tags('Analytics_DB')
+    tags = give_tags('em_analytics_database')
 
     response = rds.create_db_instance(
     DBName='Analytics_db',
@@ -14,8 +17,8 @@ def create_rds(SG, inst_class='db.t3.micro', engine='postgres'):
     MaxAllocatedStorage=100,
     DBInstanceClass=inst_class,
     Engine=engine,
-    MasterUsername='Administrator',
-    MasterUserPassword='User1234',
+    MasterUsername=login,
+    MasterUserPassword=passw,
     VpcSecurityGroupIds=[
         SG,
     ],
@@ -30,15 +33,15 @@ def create_rds(SG, inst_class='db.t3.micro', engine='postgres'):
     StorageEncrypted=False,
     CopyTagsToSnapshot=False,
     DeletionProtection=False,
-    DBSubnetGroupName='Analytics_DB_subnet_group_explisit',
+    DBSubnetGroupName='em_analytics_subnet_group',
 )
 
 
 def create_db_subnet_group(subnet_id_1, subnet_id_2):
-    tags = give_tags('Analytics_DB_subnet_group')
+    tags = give_tags('em_analytics_subnet_group')
 
     response = rds.create_db_subnet_group(
-        DBSubnetGroupName='Analytics_DB_subnet_group_explisit',
+        DBSubnetGroupName='em_analytics_subnet_group',
         DBSubnetGroupDescription='db_subnet_group',
         SubnetIds=[
             subnet_id_1,
@@ -46,4 +49,4 @@ def create_db_subnet_group(subnet_id_1, subnet_id_2):
         ],
         Tags=tags
     )
-    return 'Analytics_DB_subnet_group_explisit'
+    return 'em_analytics_subnet_group'

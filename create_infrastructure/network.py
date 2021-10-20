@@ -5,7 +5,7 @@ from tags import give_tags
 vpc = boto3.client('ec2')
 
 def create_vpc(cidr='192.168.1.0/24'):
-    tags = give_tags('Analytics_VPC_Iaroslav_Kudrin')
+    tags = give_tags('EM_Analytics_VPC')
     response = vpc.create_vpc(
             CidrBlock=cidr,
             InstanceTenancy='default',
@@ -34,7 +34,7 @@ def create_internetgateway(vpc_id):
     return ig_id
 
 def create_route_table(vpc_id):
-    tags = give_tags('analytics_route_table')
+    tags = give_tags('EM_Analytics_route_table')
     response = vpc.create_route_table(
         DryRun=False,
         VpcId=vpc_id,

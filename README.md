@@ -9,23 +9,26 @@
 1. создаем ключи для своего пользователя в консоли AWS
 
 2. Копируем их в .aws/credentials в следующие переменные соответственно
-aws_access_key_id
-aws_secret_access_key
+  aws_access_key_id
+  aws_secret_access_key
 
 3. Копируем папку .aws в /User/<username>/
 
 4. Устанавливаем виртуальное окружение
-python3 -m venv env
+  python3 -m venv env
 
-5. Устанавливаем  библиотеку boto3 для работы в AWS
-pip3 install boto3
+5. Запускаем виртуальное окружение
+  source env/bin/activate
+  
+6. Устанавливаем  библиотеку boto3 для работы в AWS
+  pip3 install boto3
 
-6. Убеждаемся что в регионе меньше 5 VPC и Запускаем файл main.py и ждем создания инфраструктуры
-python3 main.py
+7. Убеждаемся что в регионе меньше 5 VPC и Запускаем файл main.py и ждем создания инфраструктуры
+  python3 main.py
 
-7. Заполняем файл для пользователей client_settings.py вносим данные полученные из скипта main.py
-subnet_id
-sg_id 
+8. Заполняем файл для пользователей client_settings.py вносим данные полученные из скипта main.py
+  subnet_id
+  sg_id 
 
 
 Создание и управление  ec2
@@ -33,22 +36,25 @@ sg_id
 1. создаем ключи для своего пользователя в консоли AWS
 
 2. Копируем их в .aws/credentials в следующие переменные соответственно
-aws_access_key_id
-aws_secret_access_key
+  aws_access_key_id
+  aws_secret_access_key
 
 3. Копируем папку .aws в /User/<username>/
 
 4. Устанавливаем виртуальное окружение
-python3 -m venv env
+  python3 -m venv env
 
-5. Устанавливаем  библиотеку boto3 для работы в AWS
-pip3 install boto3
+5. Запускаем виртуальное окружение
+  source env/bin/activate
+  
+6. Устанавливаем  библиотеку boto3 для работы в AWS
+  pip3 install boto3
 
-6.  Запускаем скрипт create_ec2.py, он выдаст id вашей машины
+7.  Запускаем скрипт create_ec2.py, он выдаст id вашей машины
 
-7. Копируем id машины в файл client_settings.py в переменную instance_id
+8. Копируем id машины в файл client_settings.py в переменную instance_id
 
-8. Подключаемся с выданными разрешениями через rdp
+9. Подключаемся с выданными разрешениями через rdp
 
 
 Примечание

@@ -29,7 +29,11 @@
 8. Заполняем файл для пользователей client_settings.py вносим данные полученные из скипта main.py
   subnet_id
   sg_id 
+  
+Установка superset
 
+1. Создаем ec2 instance  ubuntu
+2. копируем в консоль команды из файла superset_install.sh
 
 Создание и управление  ec2
 

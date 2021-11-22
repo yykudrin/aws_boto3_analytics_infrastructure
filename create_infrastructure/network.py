@@ -18,10 +18,16 @@ def create_vpc(cidr='192.168.1.0/24'):
     return response['Vpc']['VpcId']
 
 def create_subnet(vpc_id, cidr, az):
+    tags = give_tags('EM_Analytics_subnet')
     response = vpc.create_subnet(
                 CidrBlock=cidr,
                 VpcId=vpc_id,
                 AvailabilityZone=az,
+                TagSpecifications=[
+                    { 'ResourceType': 'subnet',
+                    'Tags': tags
+                    },
+                ]
             )
     return response['Subnet']['SubnetId']
 

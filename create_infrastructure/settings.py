@@ -1,2 +1,2 @@
-login = User1234
-passw = User1234
+login = 'EM_Admin'
+passw = 'User1234'

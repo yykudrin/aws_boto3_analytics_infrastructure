@@ -18,9 +18,9 @@ from network import create_route
 
 # Create Network
 vpc = create_vpc()
-subnet_id_public = create_subnet(vpc, '192.168.1.0/25', 'us-west-1b')
-subnet_id_private_1 = create_subnet(vpc, '192.168.1.128/26', 'us-west-1b')
-subnet_id_private_2 = create_subnet(vpc, '192.168.1.192/26', 'us-west-1c')
+subnet_id_public = create_subnet(vpc, '192.168.1.0/25', 'us-west-2b')
+subnet_id_private_1 = create_subnet(vpc, '192.168.1.128/26', 'us-west-2b')
+subnet_id_private_2 = create_subnet(vpc, '192.168.1.192/26', 'us-west-2c')
 gateway_id = create_internetgateway(vpc)
 
 # Create Security Groups
@@ -49,8 +49,8 @@ create_route(route_table_id, gateway_id, '0.0.0.0/0')
 # create_nacl_rule('0.0.0.0/0', True, nacl_id_public, 1, 65535, '-1', 'allow', 100)
 
 # Create RDS
-create_db_subnet_group(subnet_id_private_1, subnet_id_private_2)
-create_rds(sg_private)
+#create_db_subnet_group(subnet_id_private_1, subnet_id_private_2)
+#create_rds(sg_private)
 
 
 

@@ -5,7 +5,7 @@ sudo chmod +x superset_install.sh
 sudo ./superset_install.sh
 sudo cp superset.service /lib/systemd/system/
 sudo chmod 644 /lib/systemd/system/superset.service
-cp superset.sh /usr/bin
+cp superset.sh /usr/bin/
 sudo chmod +x /usr/bin/superset.sh
 sudo systemctl daemon-reload
 sudo systemctl enable superset.service

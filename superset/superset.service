@@ -1,6 +1,6 @@
 [Unit]
 Description=Superset
 [Service]
-ExecStart=/home/ubuntu/superset.sh
+ExecStart=/usr/bin/superset.sh
 [Install]
 WantedBy=multi-user.target

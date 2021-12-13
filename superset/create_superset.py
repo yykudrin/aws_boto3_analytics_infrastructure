@@ -56,4 +56,4 @@ response = ec2.run_instances(
     ],
 )
 
-print(response['Instances'][0]['InstanceId'])
+print('superset_id=', response['Instances'][0]['InstanceId'])

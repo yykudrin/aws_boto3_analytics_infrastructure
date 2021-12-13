@@ -1,8 +1,9 @@
-Есть два типа использования
+Есть четыре типа использования
 
 1. Инфраструктура
 2. Создание и управление ec2
-
+3. создание superset
+4. управление superset
 
 Инфраструктура
 
@@ -32,8 +33,15 @@
   
 Установка superset
 
-1. Создаем ec2 instance  ubuntu
-2. копируем в консоль команды из файла superset_install.sh
+1. после создания инфраструктуры (Пункт Инфраструктура) заполняем файл superset_settings.py
+ec2_ami
+ec2_instance_size 
+subnet_id 
+sg_id 
+AZ
+2. Запускаем create_superset.py
+3. Скрипт распечает id superset, нужно заполнить поле superset_instance_id в client_settings.py
+
 
 Создание и управление  ec2
 
@@ -60,6 +68,11 @@
 
 9. Подключаемся с выданными разрешениями через rdp
 
+
+Управление superset
+
+1. Запустить start_superset.py
+2. Остановить stop_superset.py
 
 Примечание
   

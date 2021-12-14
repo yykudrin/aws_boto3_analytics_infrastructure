@@ -4,6 +4,7 @@ from superset_settings import ec2_instance_size
 from superset_settings import subnet_id
 from superset_settings import sg_id
 from superset_settings import AZ
+from superset_settings import region
 
 
 with open('userData.sh', 'r') as f:
@@ -11,7 +12,7 @@ with open('userData.sh', 'r') as f:
 
 my_user_data = data
 
-ec2 = boto3.client('ec2')
+ec2 = boto3.client('ec2', region_name=region)
 response = ec2.run_instances(
     BlockDeviceMappings=[
         {
@@ -47,7 +48,7 @@ response = ec2.run_instances(
             'DeleteOnTermination': True,
             'DeviceIndex': 0,
             'InterfaceType': 'interface',
-            'NetworkCardIndex': 0
+            'NetworkCardIndex': 0,
             'Groups': [
                 sg_id,
             ],

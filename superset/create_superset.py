@@ -1,4 +1,7 @@
 import boto3
+import os
+import sys
+
 from superset_settings import ec2_ami
 from superset_settings import ec2_instance_size
 from superset_settings import subnet_id
@@ -7,7 +10,7 @@ from superset_settings import AZ
 from superset_settings import region
 
 
-with open('userData.sh', 'r') as f:
+with open(os.path.join(sys.path[0], "userData.sh"), 'r') as f:
     data = f.read()
 
 my_user_data = data
@@ -56,5 +59,14 @@ response = ec2.run_instances(
         },
     ],
 )
-
+# add rule to security group open tcp port 8088 allow incoming traffic
+data = ec2.authorize_security_group_ingress(
+    GroupId=sg_id,
+    IpPermissions=[
+        {'IpProtocol': 'tcp',
+        'FromPort': 8088,
+        'ToPort': 8088,
+        'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
+    ]
+)
 print('superset_id=', response['Instances'][0]['InstanceId'])

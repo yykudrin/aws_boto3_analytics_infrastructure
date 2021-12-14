@@ -62,6 +62,6 @@ def delete_vpc(vpc_id):
     ec2client.delete_vpc(VpcId=vpc_id)
 
 
-delete_vpc('vpc-08f27f08d80fffffe')
+delete_vpc('vpc-0e27e0f763a8effa5')
 # delete rds
 

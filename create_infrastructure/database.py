@@ -4,10 +4,10 @@ from settings import login
 from settings import passw
 
 
-rds = boto3.client('rds')
 
 
-def create_rds(SG, inst_class='db.t3.micro', engine='postgres'):
+
+def create_rds(rds, SG, inst_class='db.t3.micro', engine='postgres'):
     tags = give_tags('em_analytics_database')
 
     response = rds.create_db_instance(
@@ -37,7 +37,7 @@ def create_rds(SG, inst_class='db.t3.micro', engine='postgres'):
 )
 
 
-def create_db_subnet_group(subnet_id_1, subnet_id_2):
+def create_db_subnet_group(rds, subnet_id_1, subnet_id_2):
     tags = give_tags('em_analytics_subnet_group')
 
     response = rds.create_db_subnet_group(

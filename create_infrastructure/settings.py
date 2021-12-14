@@ -1,2 +1,5 @@
 login = 'EM_Admin'
 passw = 'User1234'
+az_1 = 'eu-west-1a'
+az_2 = 'eu-west-1b'
+region = 'eu-west-1' 

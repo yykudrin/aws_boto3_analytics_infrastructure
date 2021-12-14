@@ -6,7 +6,7 @@
 # 
 
 import boto3
-
+from settings import region
 
 
 
@@ -14,7 +14,7 @@ import boto3
 # Delete VPC 192.168.10.0/24 vpc_iaroslav_kudrin vpc-0bacd21e209774cb1
 
 def delete_vpc(vpc_id):
-    ec2 = boto3.resource('ec2')
+    ec2 = boto3.resource('ec2', region_name=region)
     vpc = ec2.Vpc(vpc_id)
     ec2client = ec2.meta.client
     # 1. Delete ec2 instances in subnet
@@ -62,6 +62,6 @@ def delete_vpc(vpc_id):
     ec2client.delete_vpc(VpcId=vpc_id)
 
 
-delete_vpc('vpc-06744514a19c7cdd1')
+delete_vpc('vpc-08f27f08d80fffffe')
 # delete rds
 

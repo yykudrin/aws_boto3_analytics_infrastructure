@@ -5,9 +5,9 @@ from firewall_settings import ingress_permissions_public
 from firewall_settings import egress_permissions_public
 from tags import give_tags
 
-ec2 = boto3.client('ec2')
 
-def create_security_group(vpc_id, group_name, description, ingress_permissions, egress_permissions):
+
+def create_security_group(ec2, vpc_id, group_name, description, ingress_permissions, egress_permissions):
     response = ec2.create_security_group(GroupName=group_name, Description=description, VpcId=vpc_id)
     security_group_id = response['GroupId']
     if egress_permissions:
@@ -23,7 +23,7 @@ def create_security_group(vpc_id, group_name, description, ingress_permissions, 
     return response['GroupId']
 
 
-def create_nacl(vpc_id, nacl_name):
+def create_nacl(ec2, vpc_id, nacl_name):
     tags = give_tags(nacl_name)
     response = ec2.create_network_acl(
         DryRun=False,
@@ -37,7 +37,7 @@ def create_nacl(vpc_id, nacl_name):
     return response['NetworkAcl']['NetworkAclId']
 
 
-def create_nacl_rule(cidr_block, egress, network_acl_id, port_from, port_to, proto, action, number):
+def create_nacl_rule(ec2, cidr_block, egress, network_acl_id, port_from, port_to, proto, action, number):
     response = ec2.create_network_acl_entry(
         CidrBlock=cidr_block,
         DryRun=False,
@@ -52,7 +52,7 @@ def create_nacl_rule(cidr_block, egress, network_acl_id, port_from, port_to, pro
         RuleNumber=number
     )
 
-def assign_nacl_to_subnet(network_acl_id, subnet_id):
+def assign_nacl_to_subnet(ec2, network_acl_id, subnet_id):
     response = ec2.NetworkAcl(
         network_id
     )

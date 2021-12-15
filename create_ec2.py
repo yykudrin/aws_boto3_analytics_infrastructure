@@ -4,11 +4,12 @@ from client_settings import ec2_instance_size
 from client_settings import subnet_id
 from client_settings import sg_id
 from client_settings import AZ
+from client_settings import region
 
 
 my_user_data = ''
 
-ec2 = boto3.client('ec2')
+ec2 = boto3.client('ec2', region_name=region)
 response = ec2.run_instances(
     BlockDeviceMappings=[
         {

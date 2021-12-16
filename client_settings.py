@@ -1,7 +1,25 @@
-ami = 'ami-097ed871c2e8d2d71'
-ec2_instance_size = 't2.medium'
-subnet_id = 'subnet-01207113e69188cf9'
-sg_id = 'sg-032c013d9eae1b67c'
-AZ = 'us-west-1b'
+# you have to fill in this
+
+# ami image for os, usually it windows(depends on region)
+ami = ''
+
+# t2.medium for example
+ec2_instance_size = ''
+
+# you have to look it up in AWS or ask from ...
+subnet_id = ''
+
+# you have to look it up in AWS or ask from ...
+sg_id = ''
+
+# us-west-1b for example
+AZ = ''
+
+# id of client instance with windows
 instance_id = ''
+
+# id of superset
 superset_instance_id = ''
+
+# us-west-1b for example
+region = ''

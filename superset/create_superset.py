@@ -59,6 +59,7 @@ response = ec2.run_instances(
         },
     ],
 )
+
 # add rule to security group open tcp port 8088 allow incoming traffic
 data = ec2.authorize_security_group_ingress(
     GroupId=sg_id,
@@ -69,4 +70,19 @@ data = ec2.authorize_security_group_ingress(
         'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
     ]
 )
-print('superset_id=', response['Instances'][0]['InstanceId'])
+
+instance_id = response['Instances'][0]['InstanceId']
+print('superset_id=', instance_id)
+
+# wait for 5 second to get public ip
+time.sleep(2)
+
+
+instance = ec2.describe_instances(
+    InstanceIds=[instance_id]
+)
+
+public_ip_addr = instance['Reservations'][0]['Instances'][0]['PublicIpAddress']
+
+
+print('Connection URL is\n', f'HTTP://{public_ip_addr}:8088/')
